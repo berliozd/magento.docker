@@ -3,3 +3,6 @@ boilerplates
 html
 .idea
 *.sql.gz
+docker-compose.yml
+docker/services/apache-php/volumes/apache-m1.conf
+docker/services/apache-php/volumes/apache-m2.conf
