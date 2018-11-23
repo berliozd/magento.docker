@@ -118,5 +118,5 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-      device: ":/Users/didier/www/m2-sample.docker/html" # TODO change files location
+      device: ":/Users/didier/www/dockers/magento.docker/html" # TODO change files location
   
