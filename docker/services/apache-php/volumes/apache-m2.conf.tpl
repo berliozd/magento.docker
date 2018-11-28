@@ -2,9 +2,9 @@ Listen 82
 <VirtualHost *:82>
 
     #TODO : change server admin
-    ServerAdmin webmaster@magento.docker
+    ServerAdmin SERVER_ADMIN_EMAIL
     #TODO : change server name
-    ServerName magento.docker
+    ServerName SERVER_NAME
 
     DocumentRoot /var/www/html/pub
 

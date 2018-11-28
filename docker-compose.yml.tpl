@@ -13,24 +13,24 @@ services:
 
       # https://docs.docker.com/compose/compose-file/#ports
       ports:
-          - "8282:82" # TODO change port
+          - "APACHE_PORT:82" # TODO change port
 
       # https://docs.docker.com/compose/compose-file/#expose
       expose:
           - "9000"
-          - "8282" # TODO change port
+          - "APACHE_PORT" # TODO change port
 
       # https://docs.docker.com/compose/compose-file/#volumes
       volumes:
           - ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/7.1/mods-available/xdebug.ini
           - "nfsmount:/var/www/html"
           # TODO uncomment for magento 1
-          #- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
-          #- ./docker/private/local.xml:/var/www/html/app/etc/local.xml
-          #- ./docker/private/.htaccess:/var/www/html/.htaccess
+          #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_1- ./docker/private/local.xml:/var/www/html/app/etc/local.xml
+          #MAGENTO_1- ./docker/private/.htaccess:/var/www/html/.htaccess
           # TODO uncomment for magento 2
-          #- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
-          #- ./docker/private/env.php:/var/www/html/app/etc/env.php
+          #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_2- ./docker/private/env.php:/var/www/html/app/etc/env.php
 
       # https://docs.docker.com/compose/compose-file/#environment
       environment:
@@ -50,7 +50,7 @@ services:
       image: mysql:5.7
 
       ports:
-          - "3306:3306" # TODO change port
+          - "MYSQL_PORT:3306" # TODO change port
 
       volumes:
           - ./docker/services/db/volumes/database:/tmp/
@@ -118,5 +118,5 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-      device: ":/Users/didier/www/dockers/magento.docker/html" # TODO change files location
+      device: ":SOURCE_LOCATION" # TODO change files location
   

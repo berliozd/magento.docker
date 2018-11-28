@@ -1,4 +1,4 @@
-docker/services/db/volumes/data
+docker/services/db/volumes/data/*
 boilerplates
 html
 .idea
