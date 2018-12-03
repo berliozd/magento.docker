@@ -9,16 +9,16 @@ services:
 
       # https://docs.docker.com/compose/compose-file/#image
       # https://github.com/udovicic/echo => https://hub.docker.com/r/udovicic/echo/
-      image: udovicic/echo:apache-php7.1
+      image: V_APACHE_IMAGE
 
       # https://docs.docker.com/compose/compose-file/#ports
       ports:
-          - "APACHE_PORT:82" # TODO change port
+          - "V_APACHE_PORT:82" # TODO change port
 
       # https://docs.docker.com/compose/compose-file/#expose
       expose:
           - "9000"
-          - "APACHE_PORT" # TODO change port
+          - "V_APACHE_PORT" # TODO change port
 
       # https://docs.docker.com/compose/compose-file/#volumes
       volumes:
@@ -26,11 +26,12 @@ services:
           - "nfsmount:/var/www/html"
           # TODO uncomment for magento 1
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
-          #MAGENTO_1- ./docker/private/local.xml:/var/www/html/app/etc/local.xml
-          #MAGENTO_1- ./docker/private/.htaccess:/var/www/html/.htaccess
+          #MAGENTO_1- ./docker/private/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml
+          #MAGENTO_1- ./docker/private/magento1/index.php:/var/www/html/index.php
+          #MAGENTO_1- ./docker/private/magento1/.htaccess:/var/www/html/.htaccess
           # TODO uncomment for magento 2
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
-          #MAGENTO_2- ./docker/private/env.php:/var/www/html/app/etc/env.php
+          #MAGENTO_2- ./docker/private/magento2:/var/www/html
 
       # https://docs.docker.com/compose/compose-file/#environment
       environment:
@@ -50,11 +51,12 @@ services:
       image: mysql:5.7
 
       ports:
-          - "MYSQL_PORT:3306" # TODO change port
+          - "V_MYSQL_PORT:3306" # TODO change port
 
       volumes:
-          - ./docker/services/db/volumes/database:/tmp/
-          #- ./docker/services/db/volumes/data:/var/lib/mysql
+          - V_DATABASE_DUMP:/tmp/magento.sql.gz
+          - ./docker/services/db/importDb.sh:/tmp/importDb.sh
+          - ./docker/services/db/volumes/data:/var/lib/mysql
 
       # https://docs.docker.com/compose/compose-file/#healthcheck
       healthcheck:
@@ -64,10 +66,10 @@ services:
           retries: 5
 
       environment:
-          MYSQL_DATABASE: magento
-          MYSQL_ROOT_PASSWORD: addeos
-          MYSQL_USER: addeos
-          MYSQL_PASSWORD: addeos
+          MYSQL_DATABASE: V_MYSQL_DATABASE
+          MYSQL_ROOT_PASSWORD: V_MYSQL_ROOT_PASSWORD
+          MYSQL_USER: V_MYSQL_USER
+          MYSQL_PASSWORD: V_MYSQL_PASSWORD
 
   redis:
 
@@ -83,8 +85,8 @@ services:
 #          - "8080:80"
 #
 #      environment:
-#          MYSQL_USERNAME: ${MYSQL_ROOT_USERNAME}
-#          MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+#          MYSQL_USERNAME: ${V_MYSQL_ROOT_USERNAME}
+#          MYSQL_ROOT_PASSWORD: ${V_MYSQL_ROOT_PASSWORD}
 #
 #  varnish:
 #
@@ -118,5 +120,5 @@ volumes:
     driver_opts:
       type: nfs
       o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-      device: ":SOURCE_LOCATION" # TODO change files location
+      device: ":V_SOURCE_LOCATION" # TODO change files location
   

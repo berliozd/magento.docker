@@ -1,10 +1,8 @@
 Listen 82
 <VirtualHost *:82>
 
-    #TODO : change server admin
-    ServerAdmin SERVER_ADMIN_EMAIL
-    #TODO : change server name
-    ServerName SERVER_NAME
+    ServerAdmin V_SERVER_ADMIN_EMAIL
+    ServerName V_SERVER_NAME
 
     DocumentRoot /var/www/html
 
