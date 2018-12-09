@@ -10,7 +10,6 @@ apache_image=${apache_image//\//\\/}
 cp docker-compose.yml.tpl  docker-compose.yml
 
 # Replace generic variables
-sed "s/V_APACHE_IMAGE/${apache_image}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 sed "s/V_MYSQL_ROOT_USERNAME/${mysql_root_username}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 sed "s/V_MYSQL_ROOT_PASSWORD/${mysql_root_password}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 sed "s/V_MYSQL_DATABASE/${mysql_database}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
@@ -24,10 +23,11 @@ sed "s/V_APACHE_PORT/$apache_port/g" docker-compose.yml > buffer ; cp buffer doc
 sed "s/V_MYSQL_PORT/$mysql_port/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 
 # Magento version
-if [ ${magento_version} -eq 1 ]
-then
+if [ ${magento_version} -eq 1 ]; then
+    sed "s/V_APACHE_IMAGE/${apache_image_m1}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
     sed "s/#MAGENTO_1//g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 else
+    sed "s/V_APACHE_IMAGE/${apache_image_m2}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
     sed "s/#MAGENTO_2//g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 fi
 

@@ -8,7 +8,6 @@ services:
   apache-php:
 
       # https://docs.docker.com/compose/compose-file/#image
-      # https://github.com/udovicic/echo => https://hub.docker.com/r/udovicic/echo/
       image: V_APACHE_IMAGE
 
       # https://docs.docker.com/compose/compose-file/#ports
@@ -26,11 +25,13 @@ services:
           - "nfsmount:/var/www/html"
           # TODO uncomment for magento 1
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_1- ./docker/private/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml
           #MAGENTO_1- ./docker/private/magento1/index.php:/var/www/html/index.php
           #MAGENTO_1- ./docker/private/magento1/.htaccess:/var/www/html/.htaccess
           # TODO uncomment for magento 2
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_2- ./docker/private/magento2:/var/www/html
 
       # https://docs.docker.com/compose/compose-file/#environment

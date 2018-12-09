@@ -14,10 +14,12 @@ Prerequisites :
     - the source file location path
 - You must have a database export file store in docker/services/db/volumes/database"
 
-read -p "Are you ready ?" ready
-if [ $ready != "y" ]
-then
-exit
+default_ready=y
+read -p "Are you ready ? [$default_ready]" ready
+ready=${ready:-$default_ready}
+
+if [[ ${ready} != ${default_ready} ]]; then
+    exit 1
 fi
 
 sudo sh ./clean.sh
