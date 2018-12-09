@@ -21,15 +21,16 @@ services:
 
       # https://docs.docker.com/compose/compose-file/#volumes
       volumes:
-          - ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/7.1/mods-available/xdebug.ini
           - "nfsmount:/var/www/html"
           # TODO uncomment for magento 1
+          #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/5.6/mods-available/xdebug.ini
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_1- ./docker/private/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml
           #MAGENTO_1- ./docker/private/magento1/index.php:/var/www/html/index.php
           #MAGENTO_1- ./docker/private/magento1/.htaccess:/var/www/html/.htaccess
           # TODO uncomment for magento 2
+          #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/7.0/mods-available/xdebug.ini
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_2- ./docker/private/magento2:/var/www/html

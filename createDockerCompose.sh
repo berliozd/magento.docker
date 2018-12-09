@@ -5,7 +5,8 @@ source ./params.sh
 project_folder=${project_folder//\//\\/}
 source_location=${source_location//\//\\/}
 database_dump=${database_dump//\//\\/}
-apache_image=${apache_image//\//\\/}
+apache_image_m1=${apache_image_m1//\//\\/}
+apache_image_m2=${apache_image_m2//\//\\/}
 
 cp docker-compose.yml.tpl  docker-compose.yml
 
