@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+docker-compose down
+
 sudo rm ./temp/params.sh
 sudo rm docker-compose.yml
 sudo rm docker/services/db/importdb.sh

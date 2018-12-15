@@ -21,11 +21,3 @@ ready=${ready:-$default_ready}
 if [[ ${ready} != ${default_ready} ]]; then
     exit 1
 fi
-
-sudo sh ./scripts/clean.sh
-sh ./scripts/prepareVariables.sh
-sh ./scripts/createDockerCompose.sh
-sh ./scripts/createApacheConf.sh
-sh ./scripts/createImportDb.sh
-sudo sh ./scripts/addHost.sh
-sh ./scripts/displayInstructions.sh
