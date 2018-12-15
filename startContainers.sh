@@ -20,4 +20,4 @@ sleep 5
 docker exec -it ${folder}_db_1 bash /tmp/importDb.sh
 
 echo "Access web site on :
-http://${server_name}:${apache_port}"
+http://${server_name}:${apache_port}/"

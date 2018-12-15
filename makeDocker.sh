@@ -6,7 +6,7 @@ echo "You are a bout to create containers for running a magento site.
 =================================================
 Prerequisites :
 - You will be asked :
-    - the apache port
+    - the web server port (apache/nginx)
     - the mysql port
     - the magento version
     - the server admin email

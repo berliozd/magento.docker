@@ -23,7 +23,7 @@ services:
       volumes:
           - "nfsmount:/var/www/html"
           # TODO uncomment for magento 1
-          #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/5.6/mods-available/xdebug.ini
+          #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/7.0/mods-available/xdebug.ini
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_1- ./docker/private/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml

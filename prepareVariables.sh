@@ -2,7 +2,7 @@
 
 params_file=params.sh
 #apache_image=udovicic\\/echo\:apache\-php7\.1
-apache_image_m1=udovicic\\/echo\:apache\-php5\.6
+apache_image_m1=udovicic\\/echo\:apache\-php7\.0
 apache_image_m2=udovicic\\/echo\:apache\-php7\.0
 #apache_image=1alexcheng\\/magento
 #apache_image=1and1internet\\/ubuntu\-16\-apache\-php\-7\.2
