@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-params_file=params.sh
+params_file=temp/params.sh
 #apache_image=udovicic\\/echo\:apache\-php7\.1
 apache_image_m1=udovicic\\/echo\:apache\-php7\.0
 apache_image_m2=udovicic\\/echo\:apache\-php7\.0

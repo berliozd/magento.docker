@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./params.sh
+source ./temp/params.sh
 
 project_folder=${project_folder//\//\\/}
 source_location=${source_location//\//\\/}
@@ -8,7 +8,7 @@ database_dump=${database_dump//\//\\/}
 apache_image_m1=${apache_image_m1//\//\\/}
 apache_image_m2=${apache_image_m2//\//\\/}
 
-cp docker-compose.yml.tpl  docker-compose.yml
+cp tpl/docker-compose.yml.tpl  docker-compose.yml
 
 # Replace generic variables
 sed "s/V_MYSQL_ROOT_USERNAME/${mysql_root_username}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml

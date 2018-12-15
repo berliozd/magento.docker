@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./params.sh
+source ./temp/params.sh
 
 # Run docker containers
 docker-compose up -d

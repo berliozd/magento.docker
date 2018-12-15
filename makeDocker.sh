@@ -2,7 +2,7 @@
 
 # Display pre advice
 # ==========================
-echo "You are a bout to create containers for running a magento site.
+echo "You are about to create containers for running a magento site.
 =================================================
 Prerequisites :
 - You will be asked :
@@ -11,8 +11,8 @@ Prerequisites :
     - the magento version
     - the server admin email
     - the server name
-    - the source file location path
-- You must have a database export file store in docker/services/db/volumes/database"
+    - the source code location path
+    - the database dump file (a .tar.gz file) location path and file name"
 
 default_ready=y
 read -p "Are you ready ? [$default_ready]" ready
@@ -22,10 +22,10 @@ if [[ ${ready} != ${default_ready} ]]; then
     exit 1
 fi
 
-sudo sh ./clean.sh
-sh ./prepareVariables.sh
-sh ./createDockerCompose.sh
-sh ./createApacheConf.sh
-sh ./createImportDb.sh
-sudo sh ./addHost.sh
-sh ./displayInstructions.sh
+sudo sh ./scripts/clean.sh
+sh ./scripts/prepareVariables.sh
+sh ./scripts/createDockerCompose.sh
+sh ./scripts/createApacheConf.sh
+sh ./scripts/createImportDb.sh
+sudo sh ./scripts/addHost.sh
+sh ./scripts/displayInstructions.sh

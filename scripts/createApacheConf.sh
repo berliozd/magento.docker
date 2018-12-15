@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-source ./params.sh
+source ./temp/params.sh
 
 # Create Apache server conf
 # ==========================
 
 # Server admin email and Server name
-if [ $magento_version -eq 1 ]
+if [[ $magento_version -eq 1 ]];
 then
     apache_conf_tpl=docker/services/apache-php/volumes/apache-m1.conf.tpl
     apache_conf=docker/services/apache-php/volumes/apache-m1.conf

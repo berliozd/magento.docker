@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-source ./params.sh
+source ./temp/params.sh
 
 file=docker/services/db/importDb.sh
 
-cp importDb.sh.tpl ${file}
+cp tpl/importDb.sh.tpl ${file}
 
 sed "s/V_MYSQL_ROOT_USERNAME/${mysql_root_username}/g" ${file} > buffer ; cp buffer ${file}
 sed "s/V_MYSQL_ROOT_PASSWORD/${mysql_root_password}/g" ${file} > buffer ; cp buffer ${file}
