@@ -1,4 +1,4 @@
-.PHONY: build pre clean variables dockerCompose apacheConf createImportDb addHost post up
+.PHONY: build pre clean variables dockerCompose apacheConf createImportDb db info addHost post up
 
 build: pre clean variables dockerCompose apacheConf createImportDb addHost post
 
@@ -19,6 +19,12 @@ apacheConf:
 
 createImportDb:
 	@./scripts/createImportDb.sh
+
+db:
+	@./scripts/db.sh
+
+info:
+	@./scripts/info.sh
 
 addHost:
 	@sudo ./scripts/addHost.sh

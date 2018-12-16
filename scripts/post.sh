@@ -4,7 +4,7 @@ echo "=================================================
 Congratulations!!!
 =================================================
 You can now run the following command from here to launch the containers :
-    docker-compose up -d
+    make up (it will run docker-compose up -d)
 
 You will have 3 containers available :
 - apache
@@ -17,16 +17,13 @@ To execute bash commands on one of them :
 - and run :
     docker exec -it <CONTAINER_ID> bash
 
-You can stop the container using the following command from here :
-    docker-compose down
+You can stop the containers using the following command from here :
+    make clean (it will run docker-compose down)
 
 IMPORTANT :
 =================================================
 
-You still have to import the SQL database export in file.
-For that, you will have to execute bash command in the Mysql container.
-Run :
-    docker exec -it <CONTAINER_ID> bash (CONTAINER_ID being the Mysql container id)
-Then :
-    mysql -u root -p addeos < /tmp/<DATABASE_DUMP> (mysql root password is defined in docker-compose.yml)
+You still have to import the SQL database.
+For that, you can execute the following command :
+    make db
 "
