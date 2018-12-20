@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
 params_file=temp/params.sh
-#apache_image=udovicic\\/echo\:apache\-php7\.1
-apache_image_m1=udovicic\\/echo\:apache\-php7\.0
-apache_image_m2=udovicic\\/echo\:apache\-php7\.0
-#apache_image=1alexcheng\\/magento
-#apache_image=1and1internet\\/ubuntu\-16\-apache\-php\-7\.2
-#apache_image=webdevops/php-apache
+apache_image_php56=udovicic\\/echo\:apache\-php5\.6
+apache_image_php70=udovicic\\/echo\:apache\-php7\.0
+#apache_image_php71=udovicic\\/echo\:apache\-php7\.1
 mysql_root_username=root
 mysql_root_password=addeos
 mysql_database=magento
@@ -17,6 +14,7 @@ mysql_password=addeos
 default_apache_port=8282
 default_mysql_port=3307
 default_magento_version=1
+default_php_version=7.0
 default_project_folder=/Users/didier/www/mcp
 default_source_location=src
 default_database_dump_folder=sql
@@ -33,6 +31,9 @@ mysql_port=${mysql_port:-$default_mysql_port}
 
 read -p "Magento version [$default_magento_version]? " magento_version
 magento_version=${magento_version:-$default_magento_version}
+
+read -p "PHP version [$default_php_version]? " php_version
+php_version=${php_version:-$default_php_version}
 
 read -p "Project folder? [$default_project_folder]" project_folder
 project_folder=${project_folder:-$default_project_folder}
@@ -54,8 +55,8 @@ server_name=${server_name:-$default_server_name}
 
 # Store variables
 echo "#!/usr/bin/env bash" > ${params_file}
-echo "apache_image_m1=${apache_image_m1}" >> ${params_file}
-echo "apache_image_m2=${apache_image_m2}" >> ${params_file}
+echo "apache_image_php56=${apache_image_php56}" >> ${params_file}
+echo "apache_image_php70=${apache_image_php70}" >> ${params_file}
 echo "mysql_root_username=${mysql_root_username}" >> ${params_file}
 echo "mysql_root_password=${mysql_root_password}" >> ${params_file}
 echo "mysql_database=${mysql_database}" >> ${params_file}
@@ -64,6 +65,7 @@ echo "mysql_password=${mysql_password}" >> ${params_file}
 echo "apache_port=${apache_port}" >> ${params_file}
 echo "mysql_port=${mysql_port}" >> ${params_file}
 echo "magento_version=${magento_version}" >> ${params_file}
+echo "php_version=${php_version}" >> ${params_file}
 echo "server_admin_email=${server_admin_email}" >> ${params_file}
 echo "server_name=${server_name}" >> ${params_file}
 echo "source_location=${project_folder}/${source_location}" >> ${params_file}

@@ -9,6 +9,7 @@ Prerequisites :
     - the web server port (apache/nginx)
     - the mysql port
     - the magento version
+    - the PHP version
     - the server admin email
     - the server name
     - the source code location path

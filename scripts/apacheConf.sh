@@ -16,7 +16,7 @@ else
 fi
 
 cp ${apache_conf_tpl} ${apache_conf}
-sed "s/V_SERVER_ADMIN_EMAIL/${server_admin_email}/g" $apache_conf > buffer ; cp buffer ${apache_conf}
+sed "s/V_SERVER_ADMIN_EMAIL/${server_admin_email}/g" ${apache_conf} > buffer ; cp buffer ${apache_conf}
 sed "s/V_SERVER_NAME/${server_name}/g" ${apache_conf} > buffer ; cp buffer ${apache_conf}
 
 rm buffer

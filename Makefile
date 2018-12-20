@@ -1,6 +1,6 @@
-.PHONY: build pre clean variables dockerCompose apacheConf createImportDb db info addHost post up
+.PHONY: build pre clean variables dockerCompose apacheConf createImportDb db info addHost post up macNfsSetup down
 
-build: pre clean variables dockerCompose apacheConf createImportDb addHost post
+build: pre variables dockerCompose apacheConf createImportDb addHost post
 
 pre:
 	@./scripts/pre.sh
@@ -35,10 +35,16 @@ post:
 up:
 	@./scripts/up.sh
 
+down:
+	@./scripts/down.sh
+
 bashDb:
 	@./scripts/bashDb.sh
 
 bashWeb:
 	@./scripts/bashWeb.sh
+
+macNfsSetup:
+	@./scripts/macNfsSetup.sh
 
 

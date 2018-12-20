@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-IFS=/ read -a PARTS <<< $(pwd)
-for i in $PARTS
-do
-    folder=$i
-done
+source ./scripts/prefix.sh
 
 docker exec -it ${folder}_apache-php_1 bash

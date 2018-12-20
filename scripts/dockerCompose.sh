@@ -5,8 +5,8 @@ source ./temp/params.sh
 project_folder=${project_folder//\//\\/}
 source_location=${source_location//\//\\/}
 database_dump=${database_dump//\//\\/}
-apache_image_m1=${apache_image_m1//\//\\/}
-apache_image_m2=${apache_image_m2//\//\\/}
+apache_image_php56=${apache_image_php56//\//\\/}
+apache_image_php70=${apache_image_php70//\//\\/}
 
 cp tpl/docker-compose.yml.tpl  docker-compose.yml
 
@@ -25,12 +25,19 @@ sed "s/V_MYSQL_PORT/$mysql_port/g" docker-compose.yml > buffer ; cp buffer docke
 
 # Magento version
 if [ ${magento_version} -eq 1 ]; then
-    sed "s/V_APACHE_IMAGE/${apache_image_m1}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
     sed "s/#MAGENTO_1//g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 else
-    sed "s/V_APACHE_IMAGE/${apache_image_m2}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
     sed "s/#MAGENTO_2//g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
 fi
+
+# PHP version
+sed "s/V_PHP_VERSION/${php_version}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
+if [ ${php_version} = "5.6" ]; then
+    sed "s/V_APACHE_IMAGE/${apache_image_php56}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
+else
+    sed "s/V_APACHE_IMAGE/${apache_image_php70}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
+fi
+
 
 # Project source location
 sed "s/V_SOURCE_LOCATION/${source_location}/g" docker-compose.yml > buffer ; cp buffer docker-compose.yml
