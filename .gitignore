@@ -1,4 +1,3 @@
-docker/services/db/volumes/data/*
 boilerplates
 html
 .idea
@@ -6,5 +5,8 @@ html
 docker-compose.yml
 docker/services/apache-php/volumes/apache-m1.conf
 docker/services/apache-php/volumes/apache-m2.conf
-/docker/services/db/importDb.sh
 /temp/params.sh
+/docker/services/db/volumes/data/*
+/docker/services/db/importDb.sh
+/docker/services/db/switchToLocal.sh
+/docker/services/db/switchToLocal.sql

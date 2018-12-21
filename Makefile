@@ -1,6 +1,6 @@
-.PHONY: build pre clean variables dockerCompose apacheConf createImportDb db info addHost post up macNfsSetup down
+.PHONY: build pre clean variables dockerCompose apacheConf createImportDb createSwitchToLocal db info addHost post up macNfsSetup down
 
-build: pre variables dockerCompose apacheConf createImportDb addHost post
+build: pre variables dockerCompose apacheConf createImportDb createSwitchToLocal addHost post
 
 pre:
 	@./scripts/pre.sh
@@ -19,6 +19,9 @@ apacheConf:
 
 createImportDb:
 	@./scripts/createImportDb.sh
+
+createSwitchToLocal:
+	@./scripts/createSwitchToLocal.sh
 
 db:
 	@./scripts/db.sh
