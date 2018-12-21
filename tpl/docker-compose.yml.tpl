@@ -58,6 +58,8 @@ services:
       volumes:
           - V_DATABASE_DUMP:/tmp/magento.sql.gz
           - ./docker/services/db/importDb.sh:/tmp/importDb.sh
+          - ./docker/services/db/switchToLocal.sh:/tmp/switchToLocal.sh
+          - ./docker/services/db/switchToLocal.sql:/tmp/switchToLocal.sql
           - ./docker/services/db/volumes/data:/var/lib/mysql
 
       # https://docs.docker.com/compose/compose-file/#healthcheck
