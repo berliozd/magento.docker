@@ -11,6 +11,7 @@ mysql_user=addeos
 mysql_password=addeos
 
 # default params values
+default_project_name=mcp
 default_apache_port=8282
 default_mysql_port=3307
 default_magento_version=1
@@ -23,6 +24,10 @@ default_server_admin_email=admin@mcp.fr
 default_server_name=mcp.docker
 
 # Prompt for variables
+
+read -p "Project name? [$default_project_name]" project_name
+project_name=${project_name:-$default_project_name}
+
 read -p "Apache port? [$default_apache_port]" apache_port
 apache_port=${apache_port:-$default_apache_port}
 
@@ -54,7 +59,8 @@ read -p "Server name? [$default_server_name]" server_name
 server_name=${server_name:-$default_server_name}
 
 # Store variables
-echo "#!/usr/bin/env bash" > ${params_file}
+echo "#!/usr/bin/env bash" > projects/${project_name}/${params_file}
+echo "project_name=${project_name}" >> ${project_name}
 echo "apache_image_php56=${apache_image_php56}" >> ${params_file}
 echo "apache_image_php70=${apache_image_php70}" >> ${params_file}
 echo "mysql_root_username=${mysql_root_username}" >> ${params_file}

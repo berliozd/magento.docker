@@ -1,8 +1,11 @@
 
 update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/' where path like '%secure/base_url%';
-update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/media/' where path like '%secure/base_skin_url%';
-update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/skin/' where path like '%secure/base_media_url%';
+update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/skin/' where path like '%secure/base_skin_url%';
+update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/media/' where path like '%secure/base_media_url%';
 update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/js/' where path like '%secure/base_js_url%';
+
+update core_config_data set value = 'develop' where path = 'easygento_instancereminder/instance_reminder/instance';
+
 
 /*
 Anonymization of email adresses
@@ -59,19 +62,45 @@ Disable caches
 UPDATE `core_cache_option` SET value = 0;
 
 /*
+Switch Adyen TPE to TEST MODE
+ */
+UPDATE `core_config_data` SET `value` = 'Y' WHERE `path` = 'payment/adyen_abstract/demoMode';
+UPDATE `core_config_data` SET `value` = 'kdc-test' WHERE `path` = 'payment/adyen_abstract/notification_username';
+
+/*
 Switch Paypal TPE to TEST MODE
  */
 UPDATE `core_config_data` SET `value` = '1' WHERE `path` = 'payment/paypal_express/debug';
 
+
+/*
+Switch Algolia index to local one
+ */
+UPDATE `core_config_data` SET `value` = 'local_' WHERE `path` = 'algoliasearch/credentials/index_prefix';
+
+/*
+Disable Lengow
+ */
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lenexport/global/active_store';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lenexport/global/autoexport_newproduct';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lenexport/performances/usesavefile';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lenexport/performances/active_cron';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lensync/orders/active_store';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lensync/orders/processing_fee';
+UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lensync/performances/active_cron';
+UPDATE `core_config_data` SET `value` = '1' WHERE `path` = 'lensync/performances/debug';
+
 /*
 Clear AW_Followupemail
  */
+SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'magento' AND table_name = 'aw_followup_queue';
 DELETE FROM `aw_followup_queue`;
 
 /*
 Clean log tables
  */
 SET FOREIGN_KEY_CHECKS=0;
+TRUNCATE TABLE `lengow_log`;
 TRUNCATE TABLE `log_customer`;
 TRUNCATE TABLE `log_quote`;
 TRUNCATE TABLE `log_summary`;
@@ -87,6 +116,7 @@ Clean misc tables
  */
 SET FOREIGN_KEY_CHECKS=0;
 TRUNCATE TABLE `aw_core_logger`;
+TRUNCATE TABLE `aw_lib_logger`;
 TRUNCATE TABLE `dataflow_batch_export`;
 TRUNCATE TABLE `dataflow_batch_import`;
 TRUNCATE TABLE `dataflow_profile_history`;
