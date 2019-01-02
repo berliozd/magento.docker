@@ -55,6 +55,7 @@ macNfsSetup:
 
 restartDocker:
 	@./scripts/restartDocker.sh
+	@./scripts/up.sh
 
 
 
