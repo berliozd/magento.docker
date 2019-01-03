@@ -2,6 +2,8 @@
 
 source ./temp/params.sh
 
+sudo rm -rf docker/services/db/volumes/data/*
+
 IFS=/ read -a PARTS <<< $(pwd)
 for i in $PARTS
 do
