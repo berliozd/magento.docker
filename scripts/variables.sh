@@ -59,8 +59,7 @@ read -p "Server name? [$default_server_name]" server_name
 server_name=${server_name:-$default_server_name}
 
 # Store variables
-echo "#!/usr/bin/env bash" > projects/${project_name}/${params_file}
-echo "project_name=${project_name}" >> ${project_name}
+echo "#!/usr/bin/env bash" > ${params_file}
 echo "apache_image_php56=${apache_image_php56}" >> ${params_file}
 echo "apache_image_php70=${apache_image_php70}" >> ${params_file}
 echo "mysql_root_username=${mysql_root_username}" >> ${params_file}
