@@ -93,7 +93,6 @@ UPDATE `core_config_data` SET `value` = '1' WHERE `path` = 'lensync/performances
 /*
 Clear AW_Followupemail
  */
-SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'magento' AND table_name = 'aw_followup_queue';
 DELETE FROM `aw_followup_queue`;
 
 /*
