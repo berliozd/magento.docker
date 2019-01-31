@@ -32,6 +32,7 @@ services:
           # TODO uncomment for magento 2
           #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_2- ./docker/services/apache-php/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_2- ./docker/private/magento2:/var/www/html
 
