@@ -2,7 +2,6 @@
 update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/' where path like '%secure/base_url%';
 update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/skin/' where path like '%secure/base_skin_url%';
 update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/media/' where path like '%secure/base_media_url%';
-# update core_config_data set value = 'http://V_SERVER_NAME:V_APACHE_PORT/js/' where path like '%secure/base_js_url%';
 
 update core_config_data set value = 'develop' where path = 'easygento_instancereminder/instance_reminder/instance';
 
@@ -10,15 +9,6 @@ update core_config_data set value = 'develop' where path = 'easygento_instancere
 /*
 Anonymization of email adresses
  */
-#
-# /* Orders */
-# UPDATE `sales_flat_order`
-# SET `customer_email` = CONCAT('test__', `customer_email`)
-# WHERE `customer_email` NOT LIKE 'test__%';
-#
-# UPDATE `sales_flat_order_address`
-# SET `email` = CONCAT('test__', `email`)
-# WHERE `email` NOT LIKE 'test__%';
 
 /* Customers */
 UPDATE `customer_entity`
@@ -55,12 +45,7 @@ Misc
 UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'dev/css/merge_css_files';
 UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'dev/js/merge_files';
 UPDATE `core_config_data` SET `value` = '' WHERE `path` = 'dev/restrict/allow_ips';
-#
-# /*
-# Disable caches
-#  */
-# UPDATE `core_cache_option` SET value = 0;
-#
+
 /*
 Switch Adyen TPE to TEST MODE
  */
@@ -90,35 +75,10 @@ UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lensync/orders/proce
 UPDATE `core_config_data` SET `value` = '0' WHERE `path` = 'lensync/performances/active_cron';
 UPDATE `core_config_data` SET `value` = '1' WHERE `path` = 'lensync/performances/debug';
 
-# /*
-# Clear AW_Followupemail
-#  */
-# DELETE FROM `aw_followup_queue`;
-#
-/*
-Clean log tables
-#  */
-# SET FOREIGN_KEY_CHECKS=0;
-# # TRUNCATE TABLE `lengow_log`;
-# # TRUNCATE TABLE `log_customer`;
-# # TRUNCATE TABLE `log_quote`;
-# # TRUNCATE TABLE `log_summary`;
-# # TRUNCATE TABLE `log_url`;
-# # TRUNCATE TABLE `log_url_info`;
-# # TRUNCATE TABLE `log_visitor`;
-# # TRUNCATE TABLE `log_visitor_info`;
-# # TRUNCATE TABLE `log_visitor_online`;
-# SET FOREIGN_KEY_CHECKS=1;
-#
 /*
 Clean misc tables
  */
 SET FOREIGN_KEY_CHECKS=0;
-# TRUNCATE TABLE `aw_core_logger`;
-# TRUNCATE TABLE `aw_lib_logger`;
-# TRUNCATE TABLE `dataflow_batch_export`;
-# TRUNCATE TABLE `dataflow_batch_import`;
-# TRUNCATE TABLE `dataflow_profile_history`;
 TRUNCATE TABLE `report_viewed_product_index`;
 TRUNCATE TABLE `report_viewed_product_aggregated_daily`;
 TRUNCATE TABLE `report_viewed_product_aggregated_monthly`;
@@ -128,12 +88,10 @@ TRUNCATE TABLE `report_event`;
 TRUNCATE TABLE `sales_bestsellers_aggregated_daily`;
 TRUNCATE TABLE `sales_bestsellers_aggregated_monthly`;
 TRUNCATE TABLE `sales_bestsellers_aggregated_yearly`;
-# TRUNCATE TABLE `index_event`;
-# TRUNCATE TABLE `index_process_event`;
 SET FOREIGN_KEY_CHECKS=1;
 
 /** Update admin passwords to 'password123' */
 UPDATE `admin_user`
-SET `password` = 'dc750f78f57596c4f217529effb211a7:IguhmWG9HxXVZ0r5gcJXKoH1RWTIlCnG';
+SET `password` = 'e47d2bb0da4e53c2cf2fe0453b46b67df84a8a56f675c413e727277e0b09234a:3XlpvlQmrU5E1H5KmnNaCeq1Xs8tCpGc:1';
 UPDATE `admin_user`
 SET username = 'admin' WHERE username = 'coolrz';
