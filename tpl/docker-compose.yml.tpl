@@ -22,6 +22,8 @@ services:
       # https://docs.docker.com/compose/compose-file/#volumes
       volumes:
           - "nfsmount:/var/www/html"
+          - /Users/didier/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
+          - /Users/didier/.ssh/id_rsa:/root/.ssh/id_rsa
           # TODO uncomment for magento 1
           #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
@@ -30,10 +32,10 @@ services:
           #MAGENTO_1- ./docker/private/magento1/index.php:/var/www/html/index.php
           #MAGENTO_1- ./docker/private/magento1/.htaccess:/var/www/html/.htaccess
           # TODO uncomment for magento 2
-          #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
-          #MAGENTO_2- ./docker/services/apache-php/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
+          #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
+          #MAGENTO_2- ./docker/services/apache-php/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
           #MAGENTO_2- ./docker/private/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
 
       # https://docs.docker.com/compose/compose-file/#environment

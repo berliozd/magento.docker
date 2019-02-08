@@ -3,6 +3,9 @@ Listen 82
 
     ServerAdmin V_SERVER_ADMIN_EMAIL
     ServerName V_SERVER_NAME
+    SetEnv MAGE_RUN_TYPE "website"
+
+    #SetEnvIf Host "proxiserve.docker" MAGE_RUN_CODE=proxiserve
 
     DocumentRoot /var/www/html/pub
 
