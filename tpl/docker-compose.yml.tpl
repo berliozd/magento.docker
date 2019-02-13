@@ -25,7 +25,7 @@ services:
           - /Users/didier/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
           - /Users/didier/.ssh/id_rsa:/root/.ssh/id_rsa
           - ./docker/services/apache-php/volumes/.composer/auth.json:/root/.composer/auth.json
-          - ./docker/services/apache-php/volumes/.composer/.cache:/root/.composer/.cache
+          - ./docker/services/apache-php/volumes/.composer/.cache:/root/.composer/cache
           # TODO uncomment for magento 1
           #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
