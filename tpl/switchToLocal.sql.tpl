@@ -76,7 +76,7 @@ UPDATE `core_config_data` SET `value` = '1' WHERE `path` = 'payment/paypal_expre
 /*
 Switch Algolia index to local one
  */
-UPDATE `core_config_data` SET `value` = 'local_' WHERE `path` = 'algoliasearch/credentials/index_prefix';
+UPDATE `core_config_data` SET `value` = 'local_didier_' WHERE `path` = 'algoliasearch/credentials/index_prefix';
 
 /*
 Disable Lengow
