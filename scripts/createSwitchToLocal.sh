@@ -13,8 +13,16 @@ sed "s/V_APACHE_PORT/${apache_port}/g" ${file} > buffer ; cp buffer ${file}
 rm buffer
 
 # SQL file ===
-file=docker/services/db/switchToLocal.sql
-cp tpl/switchToLocal.sql.tpl ${file}
-sed "s/V_SERVER_NAME/${server_name}/g" ${file} > buffer ; cp buffer ${file}
-sed "s/V_APACHE_PORT/${apache_port}/g" ${file} > buffer ; cp buffer ${file}
-rm buffer
+if [ ${magento_version} -eq 1 ]; then
+    file=docker/services/db/switchToLocal.sql
+    cp tpl/switchToLocal.sql.tpl ${file}
+    sed "s/V_SERVER_NAME/${server_name}/g" ${file} > buffer ; cp buffer ${file}
+    sed "s/V_APACHE_PORT/${apache_port}/g" ${file} > buffer ; cp buffer ${file}
+    rm buffer
+else
+    file=docker/services/db/switchToLocal.sql
+    cp tpl/switchToLocal_m2.sql.tpl ${file}
+    sed "s/V_SERVER_NAME/${server_name}/g" ${file} > buffer ; cp buffer ${file}
+    sed "s/V_APACHE_PORT/${apache_port}/g" ${file} > buffer ; cp buffer ${file}
+    rm buffer
+fi
