@@ -5,6 +5,15 @@ version: "3.6"
 services:
 
   #custom name
+  mailcatcher:
+      image: tophfr/mailcatcher
+
+      ports:
+          - "1080:80"
+
+      expose:
+          - "1080"
+
   apache-php:
 
       # https://docs.docker.com/compose/compose-file/#image
