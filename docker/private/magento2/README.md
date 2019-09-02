@@ -13,7 +13,7 @@
 
 * from docker folder :
 
-```git clone git@git`hub.com:berliozd/magento.docker.git .```
+```git clone git@github.com:berliozd/magento.docker.git .```
 * ```make``` :
     * Project name? magento2test
     * Apache port? 8282
