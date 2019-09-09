@@ -47,6 +47,7 @@ services:
           #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
           #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           #MAGENTO_2- ./docker/services/apache-php/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
+          #MAGENTO_2- ./docker/services/apache-php/volumes/pestle.phar:/usr/local/bin/pestle.phar
           #MAGENTO_2- ./docker/private/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
 
       # https://docs.docker.com/compose/compose-file/#environment
