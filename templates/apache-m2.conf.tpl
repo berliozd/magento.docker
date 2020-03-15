@@ -4,9 +4,6 @@ Listen 82
     ServerAdmin V_SERVER_ADMIN_EMAIL
     ServerName V_SERVER_NAME
     SetEnv MAGE_RUN_TYPE "website"
-
-    #SetEnvIf Host "proxiserve.docker" MAGE_RUN_CODE=proxiserve
-
     DocumentRoot /var/www/html/pub
 
     <Directory />
@@ -23,6 +20,7 @@ Listen 82
         SetHandler "proxy:unix:/run/php/php-fpm.sock|fcgi://localhost/"
     </FilesMatch>
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ErrorLog /var/log/http/V_PROJECT_NAME_error.log
+    CustomLog /var/log/http/V_PROJECT_NAME_access.log combined
 </VirtualHost>
+

@@ -9,46 +9,46 @@ services:
       image: tophfr/mailcatcher
 
       ports:
-          - "1080:80"
+          - "1080:25"
 
       expose:
           - "1080"
 
-  apache-php:
+  http:
 
       # https://docs.docker.com/compose/compose-file/#image
-      image: V_APACHE_IMAGE
+      image: V_HTTP_IMAGE
 
       # https://docs.docker.com/compose/compose-file/#ports
       ports:
-          - "V_APACHE_PORT:82" # TODO change port
+          - "V_APACHE_PORT:82"
 
       # https://docs.docker.com/compose/compose-file/#expose
       expose:
           - "9000"
-          - "V_APACHE_PORT" # TODO change port
+          - "V_APACHE_PORT"
 
       # https://docs.docker.com/compose/compose-file/#volumes
       volumes:
           - "nfsmount:/var/www/html"
           - /Users/didier/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub
           - /Users/didier/.ssh/id_rsa:/root/.ssh/id_rsa
-          - ./docker/services/apache-php/volumes/.composer/auth.json:/root/.composer/auth.json
-          - ./docker/services/apache-php/volumes/.composer/cache:/root/.composer/cache
+          - ./services/http/volumes/.composer/auth.json:/root/.composer/auth.json
+          - ./services/http/volumes/.composer/cache:/root/.composer/cache
           # TODO uncomment for magento 1
-          #MAGENTO_1- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
-          #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
-          #MAGENTO_1- ./docker/services/apache-php/volumes/apache-m1.conf:/etc/apache2/sites-enabled/000-default.conf
-          #MAGENTO_1- ./docker/private/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml
-          #MAGENTO_1- ./docker/private/magento1/index.php:/var/www/html/index.php
-          #MAGENTO_1- ./docker/private/magento1/.htaccess:/var/www/html/.htaccess
+          #MAGENTO_1- ./projects/V_PROJECT_NAME/services/http/volumes/apache-m1.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_1- ./projects/V_PROJECT_NAME/services/http/volumes/apache-m1.conf:/etc/apache2/sites-enabled/000-default.conf
+          #MAGENTO_1- ./services/http/volumes/magento/magento1/app/etc/local.xml:/var/www/html/app/etc/local.xml
+          #MAGENTO_1- ./services/http/volumes/magento/magento1/index.php:/var/www/html/index.php
+          #MAGENTO_1- ./services/http/volumes/magento/magento1/.htaccess:/var/www/html/.htaccess
+          #MAGENTO_1- ./services/http/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
           # TODO uncomment for magento 2
-          #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
-          #MAGENTO_2- ./docker/services/apache-php/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
-          #MAGENTO_2- ./docker/services/apache-php/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
-          #MAGENTO_2- ./docker/services/apache-php/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
-          #MAGENTO_2- ./docker/services/apache-php/volumes/pestle.phar:/usr/local/bin/pestle.phar
-          #MAGENTO_2- ./docker/private/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
+          #MAGENTO_2- ./projects/V_PROJECT_NAME/services/http/volumes/apache-m2.conf:/etc/apache2/sites-available/000-default.conf
+          #MAGENTO_2- ./projects/V_PROJECT_NAME/services/http/volumes/apache-m2.conf:/etc/apache2/sites-enabled/000-default.conf
+          #MAGENTO_2- ./services/http/volumes/magento/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
+          #MAGENTO_2- ./services/http/volumes/n98-magerun2.phar:/usr/local/bin/n98-magerun2.phar
+          #MAGENTO_2- ./services/http/volumes/pestle.phar:/usr/local/bin/pestle.phar
+          #MAGENTO_2- ./services/http/volumes/xdebug.ini:/etc/php/V_PHP_VERSION/mods-available/xdebug.ini
 
       # https://docs.docker.com/compose/compose-file/#environment
       environment:
@@ -68,14 +68,14 @@ services:
       image: mysql:5.7
 
       ports:
-          - "V_MYSQL_PORT:3306" # TODO change port
+          - "V_MYSQL_PORT:3306"
 
       volumes:
           - V_DATABASE_DUMP:/tmp/magento.sql.gz
-          - ./docker/services/db/importDb.sh:/tmp/importDb.sh
-          - ./docker/services/db/switchToLocal.sh:/tmp/switchToLocal.sh
-          - ./docker/services/db/switchToLocal.sql:/tmp/switchToLocal.sql
-          - ./docker/services/db/volumes/data:/var/lib/mysql
+          - ./services/db/importDb.sh:/tmp/importDb.sh
+          - ./services/db/switchToLocal.sh:/tmp/switchToLocal.sh
+          - ./services/db/switchToLocal.sql:/tmp/switchToLocal.sql
+          - ./services/db/volumes/data:/var/lib/mysql
 
       # https://docs.docker.com/compose/compose-file/#healthcheck
       healthcheck:
@@ -95,18 +95,6 @@ services:
       # https://hub.docker.com/_/redis/
       image: redis:latest
 
-#  phpmyadmin:
-#
-#      # https://hub.docker.com/r/phpmyadmin/phpmyadmin/
-#      image: phpmyadmin/phpmyadmin
-#
-#      ports:
-#          - "8080:80"
-#
-#      environment:
-#          MYSQL_USERNAME: ${V_MYSQL_ROOT_USERNAME}
-#          MYSQL_ROOT_PASSWORD: ${V_MYSQL_ROOT_PASSWORD}
-#
 #  varnish:
 #
 #      # https://hub.docker.com/r/eeacms/varnish/
@@ -117,11 +105,11 @@ services:
 #          - "6085:6085"
 #
 #      depends_on:
-#          - apache-php
+#          - http
 #      volumes:
-#          - ./docker/services/varnish/volumes/varnish/varnish.vcl:/etc/varnish/conf.d/varnish.vcl
+#          - ./services/varnish/volumes/varnish/varnish.vcl:/etc/varnish/conf.d/varnish.vcl
 #      environment:
-#          BACKENDS: "apache-php"
+#          BACKENDS: "http"
 #          BACKENDS_PORT: "8282"
 #          DNS_ENABLED: "true"
 #          BACKENDS_PROBE_INTERVAL: "3s"

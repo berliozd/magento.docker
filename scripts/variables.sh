@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
 params_file=temp/params.sh
-apache_image_php56=udovicic\\/echo\:apache\-php5\.6
-apache_image_php70=udovicic\\/echo\:apache\-php7\.0
-#apache_image_php71=udovicic\\/echo\:apache\-php7\.1
 mysql_root_username=root
 mysql_root_password=addeos
 mysql_database=magento
@@ -39,6 +36,7 @@ magento_version=${magento_version:-$default_magento_version}
 
 read -p "PHP version [$default_php_version]? " php_version
 php_version=${php_version:-$default_php_version}
+http_image=udovicic\\/echo\:apache\-php${php_version}
 
 read -p "Project folder? [$default_project_folder]" project_folder
 project_folder=${project_folder:-$default_project_folder}
@@ -60,8 +58,9 @@ server_name=${server_name:-$default_server_name}
 
 # Store variables
 echo "#!/usr/bin/env bash" > ${params_file}
-echo "apache_image_php56=${apache_image_php56}" >> ${params_file}
-echo "apache_image_php70=${apache_image_php70}" >> ${params_file}
+echo "project_name=${project_name}" >> ${params_file}
+echo "php_version=${php_version}" >> ${params_file}
+echo "http_image=${http_image}" >> ${params_file}
 echo "mysql_root_username=${mysql_root_username}" >> ${params_file}
 echo "mysql_root_password=${mysql_root_password}" >> ${params_file}
 echo "mysql_database=${mysql_database}" >> ${params_file}
@@ -70,7 +69,6 @@ echo "mysql_password=${mysql_password}" >> ${params_file}
 echo "apache_port=${apache_port}" >> ${params_file}
 echo "mysql_port=${mysql_port}" >> ${params_file}
 echo "magento_version=${magento_version}" >> ${params_file}
-echo "php_version=${php_version}" >> ${params_file}
 echo "server_admin_email=${server_admin_email}" >> ${params_file}
 echo "server_name=${server_name}" >> ${params_file}
 echo "source_location=${project_folder}/${source_location}" >> ${params_file}

@@ -20,7 +20,7 @@ Listen 82
         SetHandler "proxy:unix:/run/php/php-fpm.sock|fcgi://localhost/"
     </FilesMatch>
 
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    ErrorLog /var/log/http/V_PROJECT_NAME_error.log
+    CustomLog /var/log/http/V_PROJECT_NAME_access.log combined
 </VirtualHost>
 

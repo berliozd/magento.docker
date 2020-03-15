@@ -2,9 +2,9 @@
 
 source ./temp/params.sh
 
-file=docker/services/db/importDb.sh
+file=projects/${project_name}/services/db/importDb.sh
 
-cp tpl/importDb.sh.tpl ${file}
+cp templates/importDb.sh.tpl ${file}
 
 sed "s/V_MYSQL_ROOT_USERNAME/${mysql_root_username}/g" ${file} > buffer ; cp buffer ${file}
 sed "s/V_MYSQL_ROOT_PASSWORD/${mysql_root_password}/g" ${file} > buffer ; cp buffer ${file}

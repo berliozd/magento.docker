@@ -2,4 +2,4 @@
 
 source ./scripts/prefix.sh
 
-docker exec -it ${folder}_apache-php_1 bash
+docker exec -it ${folder}_http_1 bash
