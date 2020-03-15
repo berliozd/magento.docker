@@ -4,7 +4,7 @@ source ./temp/params.sh
 
 file=projects/${project_name}/services/db/importDb.sh
 
-cp templates/importDb.sh.tpl ${file}
+cp templates/importDb-template.sh ${file}
 
 sed "s/V_MYSQL_ROOT_USERNAME/${mysql_root_username}/g" ${file} > buffer ; cp buffer ${file}
 sed "s/V_MYSQL_ROOT_PASSWORD/${mysql_root_password}/g" ${file} > buffer ; cp buffer ${file}

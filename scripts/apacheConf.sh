@@ -8,10 +8,10 @@ source ./temp/params.sh
 # Server admin email and Server name
 if [[ ${magento_version} -eq 1 ]];
 then
-    apache_conf_tpl=templates/apache-m1.conf.tpl
+    apache_conf_tpl=templates/apache-m1-template.conf
     apache_conf=projects/${project_name}/services/http/volumes/apache-m1.conf
 else
-    apache_conf_tpl=templates/apache-m2.conf.tpl
+    apache_conf_tpl=templates/apache-m2-template.conf
     apache_conf=projects/${project_name}/services/http/volumes/apache-m2.conf
 fi
 

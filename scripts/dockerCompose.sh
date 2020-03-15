@@ -7,7 +7,7 @@ database_dump=${database_dump//\//\\/}
 http_image=${http_image//\//\\/}
 
 docker_compose_file=./projects/${project_name}/docker-compose.yml
-cp templates/docker-compose.yml.tpl  ${docker_compose_file}
+cp templates/docker-compose-template.yml  ${docker_compose_file}
 
 
 sed "s/V_PROJECT_NAME/${project_name}/g" ${docker_compose_file} > buffer ; cp buffer ${docker_compose_file}
