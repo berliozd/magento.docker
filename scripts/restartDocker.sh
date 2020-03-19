@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+cd ${project_name}
 
 osascript -e 'quit app "Docker"'
 

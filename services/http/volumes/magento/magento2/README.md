@@ -1,25 +1,20 @@
 # Installing a new magento 2 instance from scratch
-* create a project folder for sources 
+* create a project folder 
 
 ```mkdir ~/www/magento2test/ ```
 
-```#with 1 subfolder```
+* and 1 subfolder for sources
 
 ```mkdir ~/www/magento2test/magento2test)```
 
-* create a project folder for docker 
+* from magento.docker root folder :
 
-```mkdir ~/www/dockers/magento2test```
-
-* from docker folder :
-
-```git clone git@github.com:berliozd/magento.docker.git .```
 * ```make``` :
     * Project name? magento2test
     * Apache port? 8282
     * Mysql port? 3307
     * Magento version? 2
-    * PHP version ? 7.0
+    * PHP version ? 7.2
     * Project folder? ~/www/magento2test
     * Source folder? magento2test
     * Database folder? sql
@@ -27,7 +22,7 @@
     * Server admin email? admin@magento2test.fr
     * Server name? magento2test.docker
 * in docker-compose.yml, comment following line to keep folder /var/www/html/ empty in container 
-    * ./docker/private/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
+    * ./services/http/volumes/magento/magento2/app/etc/env.php:/var/www/html/app/etc/env.php
 * ```make up```
 * ```make bashWeb``` to open bash session in web container
 * in web container : 

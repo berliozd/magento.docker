@@ -39,8 +39,12 @@ sed "s/V_HTTP_IMAGE/${http_image}/g" ${docker_compose_file} > buffer ; cp buffer
 # PHP version
 sed "s/V_PHP_VERSION/${php_version}/g" ${docker_compose_file} > buffer ; cp buffer ${docker_compose_file}
 
+# Server name
+sed "s/V_SERVER_NAME/${server_name}/g" ${docker_compose_file} > buffer ; cp buffer ${docker_compose_file}
+
 # Project source location
 sed "s/V_SOURCE_LOCATION/${source_location}/g" ${docker_compose_file} > buffer ; cp buffer ${docker_compose_file}
+
 # Database location
 sed "s/V_DATABASE_DUMP/${database_dump}/g" ${docker_compose_file} > buffer ; cp buffer ${docker_compose_file}
 
